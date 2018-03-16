@@ -1,6 +1,12 @@
+import { Injectable } from '@angular/core';
+
+@Injectable()
 export class User {
-    email: string;
-    isLogin: boolean;
-    name:string;
+    username:string;
     token: string;
+    //user info
+    displayName:string;
+    winMatch:number;
+    totalMatch: number;
+
 }
