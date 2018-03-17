@@ -23,6 +23,7 @@ export class LoginComponent {
                     //redirect
                     
                     this.router.navigateByUrl("/dashboard");
+
                 } else {
                     //Inform
                     this.isInvalidAuthen=true;

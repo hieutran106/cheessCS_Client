@@ -1,3 +1,4 @@
+import { SquareAttrDirective } from './core/squareAttr.directive';
 import { ChessBoardComponent } from './core/chessBoard.component';
 import { User } from './model/user.model';
 import { DashBoardComponent } from './dashboard/dashboard.component';
@@ -15,7 +16,7 @@ import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
-    AppComponent,NavbarComponent, LoginComponent, DashBoardComponent,ChessBoardComponent
+    AppComponent,NavbarComponent, LoginComponent, DashBoardComponent,ChessBoardComponent,SquareAttrDirective
   ],
   imports: [
     BrowserModule, routing, FormsModule, HttpModule
