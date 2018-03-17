@@ -29,6 +29,8 @@ export class RestService {
                 this.user.displayName=r.displayName;
                 this.user.winMatch=r.winMatch;
                 this.user.totalMatch=r.totalMatch;
+                //save info
+                localStorage.setItem("user",JSON.stringify(this.user));
             }
             return r.success;
         });

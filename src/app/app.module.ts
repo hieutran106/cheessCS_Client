@@ -1,3 +1,4 @@
+import { ChessBoardComponent } from './core/chessBoard.component';
 import { User } from './model/user.model';
 import { DashBoardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
@@ -14,7 +15,7 @@ import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
-    AppComponent,NavbarComponent, LoginComponent, DashBoardComponent
+    AppComponent,NavbarComponent, LoginComponent, DashBoardComponent,ChessBoardComponent
   ],
   imports: [
     BrowserModule, routing, FormsModule, HttpModule

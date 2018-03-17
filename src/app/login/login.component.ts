@@ -11,6 +11,7 @@ export class LoginComponent {
     username:string;
     password:string;
     formSubmitted:boolean =false;
+    isInvalidAuthen = false;
     constructor(private restService: RestService,
     private router: Router) {
 
@@ -20,10 +21,11 @@ export class LoginComponent {
             isLogin => {
                 if (isLogin) {
                     //redirect
+                    
                     this.router.navigateByUrl("/dashboard");
                 } else {
                     //Inform
-
+                    this.isInvalidAuthen=true;
                 }
             }
         );
