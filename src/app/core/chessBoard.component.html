@@ -4,32 +4,45 @@
         height: 560px;
         margin: 10px;
     }
+
     .black {
         float: left;
         width: 70px;
         height: 70px;
-        background-color:rgb(118,150,86);
-          font-size:45px;
-        text-align:center;
+        background-color: rgb(118, 150, 86);
+        font-size: 45px;
+        text-align: center;
         display: table-cell;
-        vertical-align:middle;
+        vertical-align: middle;
     }
+
     .white {
         float: left;
         width: 70px;
         height: 70px;
-        background-color:rgb(238, 238, 210) !important;
-        font-size:45px;
-        text-align:center;
+        background-color: rgb(238, 238, 210) !important;
+        font-size: 45px;
+        text-align: center;
         display: table-cell;
-        vertical-align:middle;       
+        vertical-align: middle;
+    }
+
+    .possibleMoveEmpty {
+
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+        opacity: 0.5;
+        background-color: yellow;
     }
 </style>
 <div class="col-xs-9 p-a-1">
     <div class="chessboard">
-        <div *ngFor="let item of chessBoard.board;let i=index"
+        <div *ngFor="let item of chessBoard.board;let i=index" 
             [square-attr]="i" (click)="clickAtIndex(i)">
-            {{chessBoard.getPieceAt(i)}}
+            <div [ngClass]="getPossibleMovesClasses(i)">
+                {{chessBoard.getPieceAt(i)}}
+            </div>
         </div>
     </div>
 </div>
