@@ -10,4 +10,7 @@ export class ChessBoardComponent {
         this.chessBoard=new ChessBoard();
         
     }
+    clickAtIndex(index:number) {
+        console.log(index);
+    }
 }

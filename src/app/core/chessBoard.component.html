@@ -28,7 +28,7 @@
 <div class="col-xs-9 p-a-1">
     <div class="chessboard">
         <div *ngFor="let item of chessBoard.board;let i=index"
-            [square-attr]="i">
+            [square-attr]="i" (click)="clickAtIndex(i)">
             {{chessBoard.getPieceAt(i)}}
         </div>
     </div>
