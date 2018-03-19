@@ -15,6 +15,7 @@ export class ChessBoardComponent {
     chessBoard: ChessBoard;
     highlightMap: number[] = Array(64).fill(0);
     isSelected: boolean = false;
+    possibleMove:Move[]=null;
 
     constructor() {
         this.chessBoard = new ChessBoard();
@@ -33,6 +34,7 @@ export class ChessBoardComponent {
                 let color: boolean = (pice == upperCase);
                 if (color==this.chessBoard.activeColor) {
                     //highlight cell
+                    this.isSelected=true;
                     this.highlightCells(index);
                 } else {
                     console.log("Wrong active color");
@@ -40,8 +42,17 @@ export class ChessBoardComponent {
             }
         } else {
             //make move if possible move
+            if (this.possibleMove!=null) {
+                this.possibleMove.forEach(move => {
+                    if (move.dst == index) {
+                        //Make a move
+                        this.chessBoard.makeMove(move);
+                    }
+                });
+            }
             //then clear selection
             this.highlightMap.fill(0);
+            this.isSelected=false;
         }
     }
     private highlightCells(index:number) {
@@ -73,10 +84,15 @@ export class ChessBoardComponent {
                     break;
         }
         //active highlight map
-        moves.forEach(move => {
-            this.highlightMap[move.dst]=1;
-        });
+        console.log("chessboard component: "+moves);
+        if (moves!=null) {
+            this.possibleMove=moves;
+            moves.forEach(move => {
+                this.highlightMap[move.dst]=1;
+            });
+        }
         //current cell
         this.highlightMap[index]=1;
     }
+    
 }

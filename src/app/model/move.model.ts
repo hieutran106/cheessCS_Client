@@ -8,5 +8,7 @@ export class Move {
     constructor(src:number, dst:number, chessBoard: ChessBoard) {
         this.src=src;
         this.dst=dst;
+        this.piece = chessBoard.board[src];
+        this.capture = chessBoard.board[dst];
     }
 }

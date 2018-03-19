@@ -22,9 +22,11 @@ export class Rook {
                         possibleMoves.push(new Move(row*8+col,x_des*8+col,chessBoard));
                         break;
                     } else break;
-                }
+                } else break;
+                
             }
         }
+        console.log(possibleMoves);
         return possibleMoves;
     }
 }

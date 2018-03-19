@@ -1,3 +1,4 @@
+import { Move } from './move.model';
 export class ChessBoard {
     public board: string[];
     public activeColor: boolean;
@@ -78,6 +79,43 @@ export class ChessBoard {
         let upperCase = this.board[row * 8 + col].toUpperCase();
         let dstColor: boolean = this.board[row * 8 + col] == upperCase;
         return (pieceColor != dstColor) ? true : false;
+    }
+    public makeMove(move:Move) {
+        //Update board data
+        this.board[move.src]=".";
+        this.board[move.dst]=move.piece;
+
+        //laterr
+        // if (move.PawnPromotion)
+        // {
+        //     if (ActiveColor == WHITE)
+        //         Board[move.X_Des, move.Y_Des] = 'Q';
+        //     else Board[move.X_Des, move.Y_Des] = 'q';
+        // }
+        //update active color and full move
+        if (this.activeColor==true)
+        {
+            this.activeColor = false;
+        } else
+        {
+            this.fullMove++;
+            this.activeColor = true;
+        }
+    }
+    public undoMove(move:Move) {
+        //Update board data
+        this.board[move.src] = move.piece;
+        this.board[move.dst] = move.capture;
+
+        //update active color and full move
+        if (this.activeColor==false)
+        {
+            this.activeColor = true;
+        } else
+        {
+            this.activeColor = false;
+            this.fullMove--;
+        }
     }
 
 }
