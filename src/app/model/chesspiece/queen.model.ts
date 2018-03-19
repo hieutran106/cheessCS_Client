@@ -5,8 +5,8 @@ export class Queen {
     public static generateMove(row: number, col: number, chessBoard: ChessBoard): Move[] {
         let possibleMoves: Move[] = [];
         //Color of chess piece at [x,y]
-        let upperCase = chessBoard[row * 8 + col].toUpperCase();
-        let color: boolean = chessBoard[row * 8 + col] == upperCase;
+        let upperCase = chessBoard.board[row * 8 + col].toUpperCase();
+        let color: boolean = chessBoard.board[row * 8 + col] == upperCase;
         for (let i = -1; i <= 1; i++) {
             for (let j = -1; j <= 1; j++) {
                 let step = 1;

@@ -5,8 +5,8 @@ export class Rook {
     public static generateMove(row: number, col: number, chessBoard: ChessBoard): Move[] {
         let possibleMoves: Move[] = [];
         //Color of chess piece at [x,y]
-        let upperCase = chessBoard[row * 8 + col].toUpperCase();
-        let color: boolean = chessBoard[row * 8 + col] == upperCase;
+        let upperCase = chessBoard.board[row * 8 + col].toUpperCase();
+        let color: boolean = chessBoard.board[row * 8 + col] == upperCase;
         let delta =[[1,0],[-1,0],[0,1],[0,-1]];
 
         for (let i=0;i<delta.length;i++) {

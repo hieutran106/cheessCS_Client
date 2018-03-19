@@ -5,8 +5,9 @@ export class Pawn {
     public static generateMove(row: number, col: number, chessBoard: ChessBoard): Move[] {
         let possibleMoves: Move[] = [];
         //Color of chess piece at [x,y]
-        let upperCase = chessBoard[row * 8 + col].toUpperCase();
-        let color: boolean = chessBoard[row * 8 + col] == upperCase;
+        console.log(chessBoard);
+        let upperCase = chessBoard.board[row * 8 + col].toUpperCase();
+        let color: boolean = chessBoard.board[row * 8 + col] == upperCase;
 
         let dx = (color==true)?-1:1;
         //Move ahead, no capture

@@ -8,8 +8,8 @@ export class Knight {
         [+2, -1], [+1, -2]];
         let possibleMoves: Move[] = [];
         //Color of chess piece at [x,y]
-        let upperCase = chessBoard[row * 8 + col].toUpperCase();
-        let color: boolean = chessBoard[row * 8 + col] == upperCase;
+        let upperCase = chessBoard.board[row * 8 + col].toUpperCase();
+        let color: boolean = chessBoard.board[row * 8 + col] == upperCase;
         for (let i = 0; i < delta.length; i++) {
             let x_des = row + delta[i][0];
             let y_des = row + delta[i][1];
