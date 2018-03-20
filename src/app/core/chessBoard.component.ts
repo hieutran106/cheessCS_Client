@@ -94,5 +94,8 @@ export class ChessBoardComponent {
         //current cell
         this.highlightMap[index]=1;
     }
+    test() {
+        this.chessBoard.board[0]="K";
+    }
     
 }

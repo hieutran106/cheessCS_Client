@@ -42,10 +42,14 @@
             [square-attr]="i" (click)="clickAtIndex(i)">
             <div [ngClass]="getPossibleMovesClasses(i)">
                 {{chessBoard.getPieceAt(i)}}
+                
             </div>
         </div>
     </div>
 </div>
 <div class="col-xs-3 bg-success">
     <p>sdads</p>
+    <button class="btn btn-primary" (click)="test()">
+        Test
+    </button>
 </div>

@@ -23,8 +23,6 @@ export class ChessBoard {
             "P": "\u2659",
         };
         this.reset();
-        console.log(this.board);
-
     }
     public getPieceAt(index: number): string {
         let piece = this.board[index];
@@ -76,9 +74,13 @@ export class ChessBoard {
         else return false;
     }
     public canCapture(row: number, col: number, pieceColor: boolean) {
-        let upperCase = this.board[row * 8 + col].toUpperCase();
-        let dstColor: boolean = this.board[row * 8 + col] == upperCase;
-        return (pieceColor != dstColor) ? true : false;
+        let piece = this.board[row*8+col];
+        if (piece!=".") {
+            let upperCase = piece.toUpperCase();
+            let dstColor: boolean = this.board[row * 8 + col] == upperCase;
+            return (pieceColor != dstColor) ? true : false;
+        } else return false;
+        
     }
     public makeMove(move:Move) {
         //Update board data
