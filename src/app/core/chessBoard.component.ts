@@ -18,6 +18,10 @@ export class ChessBoardComponent {
     possibleMove:Move[]=null;
     fenString:string = null;
     
+    //historyMoves
+    private historyMoves:Move[]=[];
+    historyMovesStr:string="";
+
     constructor() {
         this.chessBoard = new ChessBoard();
         this.fenString=this.chessBoard.getFEN();
@@ -48,8 +52,8 @@ export class ChessBoardComponent {
                 this.possibleMove.forEach(move => {
                     if (move.dst == index) {
                         //Make a move
-                        this.chessBoard.makeMove(move);
-                        this.fenString=this.chessBoard.getFEN();
+                        this.makeMove(move);
+                        
                     }
                 });
             }
@@ -99,6 +103,41 @@ export class ChessBoardComponent {
     }
     test() {
         this.chessBoard.board[0]="K";
+    }
+    get boardInfo() {
+        return JSON.stringify({
+            activeColor:this.chessBoard.activeColor,
+            fullMove:this.chessBoard.fullMove
+        });
+    }
+    private makeMove(move:Move) {
+        this.chessBoard.makeMove(move);
+        this.historyMoves.push(move);
+        this.fenString=this.chessBoard.getFEN();
+        if (this.chessBoard.activeColor==false)
+        {
+            this.historyMovesStr+=`${this.chessBoard.fullMove}. ${move}`;
+        } else
+        {
+            this.historyMovesStr+=`  ${move}\n`;
+        }
+    }
+    undoMove() {
+        let move:Move=this.historyMoves.pop();
+        if (move!=null) {
+            this.chessBoard.undoMove(move);
+            this.fenString=this.chessBoard.getFEN();
+            if (this.chessBoard.activeColor == false)
+            {
+                this.historyMovesStr=this.historyMovesStr.slice(0,this.historyMovesStr.length-24)
+            }
+            else
+            {
+                //this.historyMovesStr=this.historyMovesStr.slice(0,this.historyMovesStr.length-22)
+            }
+            //this.historyMovesStr="dhjfkhdskfj";
+        }
+        
     }
     
 }

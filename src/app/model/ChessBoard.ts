@@ -4,6 +4,7 @@ export class ChessBoard {
     public activeColor: boolean;
     public fullMove: number;
     private dict;
+
     constructor() {
         this.board = Array(64).fill(0);
         this.dict = {
@@ -31,10 +32,8 @@ export class ChessBoard {
         return pieceHTML;
     }
     public reset() {
-        let startingPosition: string = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w";
+        let startingPosition: string = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w 1";
         this.Load(startingPosition);
-        this.activeColor = true;
-        this.fullMove = 1;
     }
     public Load(fen: string) {
         let block: string[] = fen.split(' ');
@@ -87,13 +86,10 @@ export class ChessBoard {
         this.board[move.src]=".";
         this.board[move.dst]=move.piece;
 
-        //laterr
-        // if (move.PawnPromotion)
-        // {
-        //     if (ActiveColor == WHITE)
-        //         Board[move.X_Des, move.Y_Des] = 'Q';
-        //     else Board[move.X_Des, move.Y_Des] = 'q';
-        // }
+        if (move.pawn_promotion)
+        {
+            this.board[move.dst]=this.activeColor?"Q":"q";
+        }
         //update active color and full move
         if (this.activeColor==true)
         {
@@ -139,6 +135,8 @@ export class ChessBoard {
                 fen_str.push("/");
             }
         }
+        fen_str.push(this.activeColor?" w":" b");
+        fen_str.push(" "+this.fullMove);
         return fen_str.join("");
     }
 
