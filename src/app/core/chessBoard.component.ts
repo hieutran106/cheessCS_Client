@@ -126,16 +126,11 @@ export class ChessBoardComponent {
         let move:Move=this.historyMoves.pop();
         if (move!=null) {
             this.chessBoard.undoMove(move);
-            this.fenString=this.chessBoard.getFEN();
-            if (this.chessBoard.activeColor == false)
-            {
-                this.historyMovesStr=this.historyMovesStr.slice(0,this.historyMovesStr.length-24)
-            }
-            else
-            {
-                //this.historyMovesStr=this.historyMovesStr.slice(0,this.historyMovesStr.length-22)
-            }
-            //this.historyMovesStr="dhjfkhdskfj";
+            this.fenString=this.chessBoard.getFEN();    
+            let endIndex:number=this.chessBoard.activeColor?-21:-20;
+            let newHistory=this.historyMovesStr.slice(0,endIndex);
+            this.historyMovesStr=newHistory;
+
         }
         
     }

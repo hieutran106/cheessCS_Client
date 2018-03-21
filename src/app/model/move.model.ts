@@ -35,7 +35,7 @@ export class Move {
         let y_dst=this.dst%8;
         let result=`${this.piece}[${x_src},${y_src}]-[${x_dst},${y_dst}]`;
         if (this.capture!=".") {
-            result=result+" x"+this.capture;
+            result=result+"  x"+this.capture;
         } else {
             result=result+" --";
         }
