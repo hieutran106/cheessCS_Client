@@ -12,7 +12,7 @@ export class Knight {
         let color: boolean = chessBoard.board[row * 8 + col] == upperCase;
         for (let i = 0; i < delta.length; i++) {
             let x_des = row + delta[i][0];
-            let y_des = row + delta[i][1];
+            let y_des = col + delta[i][1];
             if (ChessBoard.isValidCoordinate(x_des, y_des)
                 && (chessBoard.board[x_des * 8 + y_des] == "." || chessBoard.canCapture(x_des, y_des, color))) {
                 possibleMoves.push(new Move(row * 8 + col, x_des * 8 + y_des, chessBoard));

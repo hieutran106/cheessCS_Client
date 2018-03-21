@@ -2,7 +2,7 @@ import { Move } from './../move.model';
 import { ChessBoard } from './../ChessBoard';
 export class Bishop {
     public static generateMove(row:number, col:number, chessBoard:ChessBoard):Move[] {
-        let possibleMoves: Move[];
+        let possibleMoves: Move[]=[];
         //Color of chess piece at [x,y]
         let upperCase = chessBoard.board[row * 8 + col].toUpperCase();
         let color: boolean = chessBoard.board[row * 8 + col] == upperCase;
@@ -16,11 +16,11 @@ export class Bishop {
                     let y_des=col+j*step;
                     if (ChessBoard.isValidCoordinate(x_des,y_des)) {
                         if (chessBoard.board[x_des*8+y_des]==".") {
-                            let move = new Move(row*8+col,x_des*8+col,chessBoard);
+                            let move = new Move(row*8+col,x_des*8+y_des,chessBoard);
                             possibleMoves.push(move);
                             step++;
                         } else  if (chessBoard.canCapture(x_des,y_des,color)) {
-                            possibleMoves.push(new Move(row*8+col,x_des*8+col,chessBoard));
+                            possibleMoves.push(new Move(row*8+col,x_des*8+y_des,chessBoard));
                             break;
                         } else break;
                     } else break;

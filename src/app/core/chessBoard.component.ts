@@ -16,9 +16,11 @@ export class ChessBoardComponent {
     highlightMap: number[] = Array(64).fill(0);
     isSelected: boolean = false;
     possibleMove:Move[]=null;
-
+    fenString:string = null;
+    
     constructor() {
         this.chessBoard = new ChessBoard();
+        this.fenString=this.chessBoard.getFEN();
     }
     getPossibleMovesClasses(index: number): string {
         if (this.highlightMap[index] != 0) {
@@ -47,6 +49,7 @@ export class ChessBoardComponent {
                     if (move.dst == index) {
                         //Make a move
                         this.chessBoard.makeMove(move);
+                        this.fenString=this.chessBoard.getFEN();
                     }
                 });
             }

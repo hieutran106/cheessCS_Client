@@ -14,11 +14,11 @@ export class Queen {
                     let x_des = row + i * step;
                     let y_des = col + j * step;
                     if (ChessBoard.isValidCoordinate(x_des,y_des)) {
-                        if (chessBoard.board[x_des*8+col]==".") {
-                            possibleMoves.push(new Move(row*8+col,x_des*8+col,chessBoard));
+                        if (chessBoard.board[x_des*8+y_des]==".") {
+                            possibleMoves.push(new Move(row*8+col,x_des*8+y_des,chessBoard));
                             step++;
                         } else if (chessBoard.canCapture(x_des,y_des,color)) {
-                            possibleMoves.push(new Move(row*8+col,x_des*8+col,chessBoard));
+                            possibleMoves.push(new Move(row*8+col,x_des*8+y_des,chessBoard));
                             break;
                         } else break;
                     } else break;

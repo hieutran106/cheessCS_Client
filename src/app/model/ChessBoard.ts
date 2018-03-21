@@ -119,5 +119,27 @@ export class ChessBoard {
             this.fullMove--;
         }
     }
+    public getFEN():string {
+        let fen_str=new Array();
+        for (let i=0;i<8;i++) {
+            let number=0;
+            for (let j=0;j<8;j++) {
+                if (this.board[i*8+j]!=".") {
+                    fen_str.push(this.board[i*8+j]);
+                } else {
+                    number++;
+                    let next=j+1;
+                    if (next==8 || this.board[i*8+next]!=".") {
+                        fen_str.push(number);
+                        number=0;
+                    }
+                }
+            }
+            if (i<7) {
+                fen_str.push("/");
+            }
+        }
+        return fen_str.join("");
+    }
 
 }

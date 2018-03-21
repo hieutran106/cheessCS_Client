@@ -16,10 +16,10 @@ export class Rook {
                 let y_des = col + delta[i][1] * step;
                 if (ChessBoard.isValidCoordinate(x_des,y_des)) {
                     if (chessBoard.board[x_des*8+col]==".") {
-                        possibleMoves.push(new Move(row*8+col,x_des*8+col,chessBoard));
+                        possibleMoves.push(new Move(row*8+col,x_des*8+y_des,chessBoard));
                         step++;
                     } else if (chessBoard.canCapture(x_des,y_des,color)) {
-                        possibleMoves.push(new Move(row*8+col,x_des*8+col,chessBoard));
+                        possibleMoves.push(new Move(row*8+col,x_des*8+y_des,chessBoard));
                         break;
                     } else break;
                 } else break;
