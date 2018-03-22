@@ -130,7 +130,6 @@ export class ChessBoardComponent {
             let endIndex:number=this.chessBoard.activeColor?-21:-20;
             let newHistory=this.historyMovesStr.slice(0,endIndex);
             this.historyMovesStr=newHistory;
-
         }
         
     }

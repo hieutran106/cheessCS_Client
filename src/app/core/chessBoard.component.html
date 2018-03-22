@@ -68,12 +68,12 @@
         <button class="btn btn-outline-danger" (click)="undoMove()">Undo Move</button>
 
         <label class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="debugModeCheck">
+            <input type="checkbox" class="custom-control-input" id="debugModeCheck" [checked]="enableDebugMode" (change)="enableDebugMode = !enableDebugMode">
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">Enable DEBUG mode</span>
         </label>
         <label class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="AICheck">
+            <input type="checkbox" class="custom-control-input" id="AICheck" [checked]="enableAI" (change)="enableAI = !enableAI">
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">Enable AI</span>
         </label>
