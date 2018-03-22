@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { King } from './../model/chesspiece/king.model';
 import { Queen } from './../model/chesspiece/queen.model';
 import { Bishop } from './../model/chesspiece/bishop.model';
@@ -7,6 +8,8 @@ import { Pawn } from './../model/chesspiece/pawn.model';
 import { Move } from './../model/move.model';
 import { ChessBoard } from './../model/ChessBoard';
 import { Component } from '@angular/core';
+import 'rxjs/add/observable/of';
+
 @Component({
     selector: "chessBoard",
     templateUrl: "chessBoard.component.html"
@@ -21,7 +24,12 @@ export class ChessBoardComponent {
     //historyMoves
     private historyMoves:Move[]=[];
     historyMovesStr:string="";
-
+    //config
+    enableDebugMode:boolean = false;
+    enableAI:boolean = true;
+    //AI move
+    thinkLabel:string="Computer is thinking....";
+    isRequesting:boolean=false;
     constructor() {
         this.chessBoard = new ChessBoard();
         this.fenString=this.chessBoard.getFEN();
@@ -121,6 +129,19 @@ export class ChessBoardComponent {
         {
             this.historyMovesStr+=`  ${move}\n`;
         }
+        if (!this.enableDebugMode) {
+            //implement later
+        }
+        if (!this.enableAI) {
+            return;
+        }
+        if (this.chessBoard.activeColor==false) {
+           let bestMove=this.getAIMove().subscribe(move => {
+               console.log(move);
+                this.makeMove(move);
+           });
+
+        }
     }
     undoMove() {
         let move:Move=this.historyMoves.pop();
@@ -133,5 +154,24 @@ export class ChessBoardComponent {
         }
         
     }
+    private getAIMove():Observable<Move>
+    {
+        if (this.chessBoard.fullMove == 1 && this.chessBoard.activeColor == false)
+        {
+            let move=new Move(1*8+4,3*8+4,this.chessBoard);
+            return Observable.of(move);
+        }
+        else if (this.chessBoard.fullMove == 2 && this.chessBoard.activeColor == false)
+        {
+            let move=new Move(0*8+1,2*8+2,this.chessBoard);
+            return Observable.of(move);
+        }
+        else
+        {
+           console.log("request move from server");
+           return null;
+        }
+    }
+    
     
 }
