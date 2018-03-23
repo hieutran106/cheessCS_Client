@@ -13,15 +13,16 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './core/navBar.component';
 import { RestService } from './model/rest.service';
 import { HttpModule } from '@angular/http';
-import { ModalModule } from 'ngx-bootstrap/modal';
 
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 @NgModule({
   declarations: [
     AppComponent,NavbarComponent, LoginComponent, DashBoardComponent,ChessBoardComponent,SquareAttrDirective,ModalContentComponent
   ],
   imports: [
-    BrowserModule, routing, FormsModule, HttpModule,ModalModule.forRoot()
+    BrowserModule, routing, FormsModule, HttpModule,ModalModule.forRoot(),ButtonsModule.forRoot()
   ],
   entryComponents:[ModalContentComponent],
   providers: [RestService, User],

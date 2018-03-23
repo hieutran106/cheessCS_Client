@@ -49,7 +49,7 @@
 </style>
 <div class="col-xs-6 p-l-3 p-t-2">
     <div class="chessboard">
-        <div *ngFor="let item of chessBoard.board;let i=index" [square-attr]="i" (click)="clickAtIndex(i)">
+        <div *ngFor="let item of chessBoard.board;let i=index" [square-attr]="i" (click)="clickAtIndex(i)" name="dfdfs">
             <div [ngClass]="getPossibleMovesClasses(i)">
                 {{chessBoard.getPieceAt(i)}}
 
@@ -60,8 +60,15 @@
 <div class="col-xs-4 p-l-3 p-t-2">
 
     <h2 class="text-info">Board information:</h2>
+    <p>Difficulty:</p>
+    <div class="btn-group" btnRadioGroup [(ngModel)]="difficulty">
+        <label class="btn btn-info" btnRadio="Easy">Easy</label>
+        <label class="btn btn-info" btnRadio="Medium">Medium</label>
+        <label class="btn btn-info" btnRadio="Hard">Hard</label>
+      </div>
+   
 
-    <form class="p-t-1">
+    
         <div class="form-group">
             <label for="exampleTextarea">FEN notation</label>
             <textarea class="form-control" id="fenTextarea" rows="3" [value]="fenString" (input)="fenString=$event.target.value"></textarea>
@@ -75,7 +82,7 @@
         <button class="btn btn-outline-danger m-b-1" (click)="undoMove()">Undo Move</button>
 
         
-    </form>
+    
     
     <label class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input" id="debugModeCheck" [checked]="enableDebugMode" (change)="enableDebugMode = !enableDebugMode">

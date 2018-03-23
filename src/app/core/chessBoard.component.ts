@@ -38,7 +38,7 @@ export class ChessBoardComponent {
     //modal
     modalRef: BsModalRef;
     modalLabel="";
-
+    difficulty="Medium";
     constructor(private restService: RestService, private modalService: BsModalService) {
         this.chessBoard = new ChessBoard();
         //test
