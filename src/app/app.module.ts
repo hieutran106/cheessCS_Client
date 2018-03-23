@@ -1,3 +1,4 @@
+import { ModalContentComponent } from './core/modalContent.component';
 import { SquareAttrDirective } from './core/squareAttr.directive';
 import { ChessBoardComponent } from './core/chessBoard.component';
 import { User } from './model/user.model';
@@ -17,11 +18,12 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
-    AppComponent,NavbarComponent, LoginComponent, DashBoardComponent,ChessBoardComponent,SquareAttrDirective
+    AppComponent,NavbarComponent, LoginComponent, DashBoardComponent,ChessBoardComponent,SquareAttrDirective,ModalContentComponent
   ],
   imports: [
     BrowserModule, routing, FormsModule, HttpModule,ModalModule.forRoot()
   ],
+  entryComponents:[ModalContentComponent],
   providers: [RestService, User],
   bootstrap: [AppComponent]
 })

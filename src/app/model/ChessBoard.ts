@@ -139,5 +139,21 @@ export class ChessBoard {
         fen_str.push(" "+this.fullMove);
         return fen_str.join("");
     }
+    public checkEndGame():number {
+        let whiteKingPos=-1;
+        let blackKingPos=-1;
+        for (let i=0;i<64;i++) {
+            if (this.board[i]=="K") {
+                whiteKingPos=i;
+            } else if (this.board[i]=="k") {
+                blackKingPos=i;
+            }
+        }
+        if (whiteKingPos==-1 && blackKingPos!=-1) {
+            return -1;//Black win
+        } else  if (blackKingPos==-1 && whiteKingPos!=-1) {
+            return 1;//WHITE win
+        } else return 0;//Draw
+    }
 
 }

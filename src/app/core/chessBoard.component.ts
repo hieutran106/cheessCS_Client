@@ -1,3 +1,4 @@
+import { ModalContentComponent } from './modalContent.component';
 import { RestService } from './../model/rest.service';
 import { Observable } from 'rxjs/Observable';
 import { King } from './../model/chesspiece/king.model';
@@ -40,6 +41,8 @@ export class ChessBoardComponent {
 
     constructor(private restService: RestService, private modalService: BsModalService) {
         this.chessBoard = new ChessBoard();
+        //test
+        this.chessBoard.Load("4k3/8/8/1q2R3/8/8/8/4K3 w 3");
         this.fenString = this.chessBoard.getFEN();
     }
     getPossibleMovesClasses(index: number): string {
@@ -117,9 +120,6 @@ export class ChessBoardComponent {
         //current cell
         this.highlightMap[index] = 1;
     }
-    test() {
-        this.chessBoard.board[0] = "K";
-    }
     get boardInfo() {
         return JSON.stringify({
             activeColor: this.chessBoard.activeColor,
@@ -136,7 +136,10 @@ export class ChessBoardComponent {
             this.historyMovesStr += `  ${move}\n`;
         }
         if (!this.enableDebugMode) {
-            //implement later
+            let status = this.checkEndGame();
+            if (status!=0) {
+                return;
+            }
         }
         if (!this.enableAI) {
             return;
@@ -179,16 +182,49 @@ export class ChessBoardComponent {
             });
         }
     }
-    openModal(template: TemplateRef<any>) {
+    loadFen() {
+        this.chessBoard.Load(this.fenString);
+    }
+    openModal() {
+        let status=1;
         let modalOptions= {
             ignoreBackdropClick:true,
-            keyboard:false
+            keyboard:false,
+            initialState: {
+                title:(status==1)?"You won. Congratulation." :
+                "You lose. Waana try another game?"
+            }
         };
-        this.modalRef = this.modalService.show(template,modalOptions);
+        this.modalRef=this.modalService.show(ModalContentComponent,modalOptions);
         this.modalService.onHidden.subscribe((reason: string) => {
-            console.log("reset game");
-          });
-      }
+            this.resetGame();
+        });
+    }
+    private checkEndGame() {
+        let status=this.chessBoard.checkEndGame();
+        if (status!=0) {
+            let modalOptions= {
+                ignoreBackdropClick:true,
+                keyboard:false,
+                initialState: {
+                    title:(status==1)?"You won. Congratulation." :
+                    "You lose. Waana try another game?"
+                }
+            };
+            this.modalRef=this.modalService.show(ModalContentComponent,modalOptions);
+            this.modalService.onHidden.subscribe((reason: string) => {
+                this.resetGame();
+            });
+
+        }
+        return status;
+    }
+    private resetGame() {
+        this.chessBoard.reset();
+        this.fenString = this.chessBoard.getFEN();
+        this.historyMoves=[];
+        this.historyMovesStr="";
+    }
 
 
 }
