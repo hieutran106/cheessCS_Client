@@ -1,3 +1,4 @@
+import { Move } from './move.model';
 import { User } from './user.model';
 import {Http,Request, RequestMethod} from "@angular/http";
 import { Injectable } from "@angular/core";
@@ -5,7 +6,7 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 
 const HOST = "http://localhost";
-const PORT = 3500;
+const PORT = 9782;
 
 @Injectable()
 export class RestService {
@@ -29,23 +30,24 @@ export class RestService {
                 this.user.displayName=r.displayName;
                 this.user.winMatch=r.winMatch;
                 this.user.totalMatch=r.totalMatch;
-                //save info
-                localStorage.setItem("user",JSON.stringify(this.user));
+
             }
             return r.success;
         });
     }
-    getNextMove(): Observable<any> {
+    getNextMove(fen:string): Observable<any> {
         let request = new Request({
-            method: RequestMethod.Get,
-            url: this.baseUrl+"engine",
-            body: {board:'examaple',fullMove:3}
+            method: RequestMethod.Post,
+            url: this.baseUrl+"api/engine",
+            body: {fen:fen}
         });
         if (this.user.token!=null) {
             request.headers.set("Authorization",`Bearer<${this.user.token}>`)
         }
         return this.http.request(request).map(
-            response => response.json()
+            response => {
+                return response.json();
+            }
         );
     }
 }

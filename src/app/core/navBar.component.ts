@@ -6,11 +6,12 @@ import { Router } from '@angular/router';
     templateUrl: "navBar.component.html"
 })
 export class NavbarComponent {
-    constructor(private user: User,private router: Router) {
+    constructor(public user: User,private router: Router) {
 
     }
     logout() {
         this.user.token=null;
         this.router.navigateByUrl("/login");
     }
+
 }
