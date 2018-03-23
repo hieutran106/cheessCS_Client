@@ -46,9 +46,12 @@ export class ChessBoardComponent {
         this.fenString = this.chessBoard.getFEN();
     }
     getPossibleMovesClasses(index: number): string {
-        if (this.highlightMap[index] != 0) {
+        if (this.highlightMap[index] == 1) {
             return "possibleMoveEmpty";
-        } else return "";
+        } else if (this.highlightMap[index] == 2) {
+            return "possibleMoveCapture";
+        } else 
+        return "";
     }
     clickAtIndex(index: number) {
         if (this.isSelected == false) {
@@ -114,7 +117,12 @@ export class ChessBoardComponent {
         if (moves != null) {
             this.possibleMove = moves;
             moves.forEach(move => {
-                this.highlightMap[move.dst] = 1;
+                if (move.capture!=".") {
+                    this.highlightMap[move.dst] = 2;
+                } else {
+                    this.highlightMap[move.dst] = 1;
+                }
+                
             });
         }
         //current cell
