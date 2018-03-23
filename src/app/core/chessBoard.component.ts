@@ -8,9 +8,11 @@ import { Rook } from './../model/chesspiece/rook.model';
 import { Pawn } from './../model/chesspiece/pawn.model';
 import { Move } from './../model/move.model';
 import { ChessBoard } from './../model/ChessBoard';
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import 'rxjs/add/observable/of';
 import "rxjs/add/operator/map";
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 @Component({
     selector: "chessBoard",
@@ -32,7 +34,11 @@ export class ChessBoardComponent {
     //AI move
     thinkLabel: string = "";
     isRequesting: boolean = false;
-    constructor(private restService: RestService) {
+    //modal
+    modalRef: BsModalRef;
+    modalLabel="";
+
+    constructor(private restService: RestService, private modalService: BsModalService) {
         this.chessBoard = new ChessBoard();
         this.fenString = this.chessBoard.getFEN();
     }
@@ -173,6 +179,16 @@ export class ChessBoardComponent {
             });
         }
     }
+    openModal(template: TemplateRef<any>) {
+        let modalOptions= {
+            ignoreBackdropClick:true,
+            keyboard:false
+        };
+        this.modalRef = this.modalService.show(template,modalOptions);
+        this.modalService.onHidden.subscribe((reason: string) => {
+            console.log("reset game");
+          });
+      }
 
 
 }

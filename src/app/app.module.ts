@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './core/navBar.component';
 import { RestService } from './model/rest.service';
 import { HttpModule } from '@angular/http';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { HttpModule } from '@angular/http';
     AppComponent,NavbarComponent, LoginComponent, DashBoardComponent,ChessBoardComponent,SquareAttrDirective
   ],
   imports: [
-    BrowserModule, routing, FormsModule, HttpModule
+    BrowserModule, routing, FormsModule, HttpModule,ModalModule.forRoot()
   ],
   providers: [RestService, User],
   bootstrap: [AppComponent]
