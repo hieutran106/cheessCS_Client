@@ -42,8 +42,8 @@ export class ChessBoardComponent {
     constructor(private restService: RestService, private modalService: BsModalService) {
         this.chessBoard = new ChessBoard();
         //test
-        this.chessBoard.Load("4k3/8/8/1q2R3/8/8/8/4K3 w 3");
-        this.fenString = this.chessBoard.getFEN();
+        // this.chessBoard.Load("4k3/8/8/1q2R3/8/8/8/4K3 w 3");
+        // this.fenString = this.chessBoard.getFEN();
     }
     getPossibleMovesClasses(index: number): string {
         if (this.highlightMap[index] == 1) {
@@ -185,7 +185,16 @@ export class ChessBoardComponent {
             return Observable.of(move);
         }
         else {
-            return this.restService.getNextMove(this.fenString).map(res => {
+            let difficulty=0;
+            if (this.difficulty=="Easy") {
+                difficulty=0;
+            } else if (this.difficulty=="Medium") {
+                difficulty=1;
+            } else if(this.difficulty=="Hard") {
+                difficulty=2;
+            }
+            console.log("difficulty: "+difficulty);
+            return this.restService.getNextMove(this.fenString,difficulty).map(res => {
                 return new Move(res.Src, res.Dst, this.chessBoard);
             });
         }

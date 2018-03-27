@@ -33,13 +33,14 @@ export class RestService {
             return r.success;
         });
     }
-    getNextMove(fen:string): Observable<any> {
+    getNextMove(fen:string,difficulty:number): Observable<any> {
         let request = new Request({
             method: RequestMethod.Post,
             url: this.baseUrl+"api/engine/getbestmove",
             body: {
                 fen:fen,
-                token:this.user.token
+                token:this.user.token,
+                difficulty:difficulty
             }
         });
         return this.http.request(request).map(
