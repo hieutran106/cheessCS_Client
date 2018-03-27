@@ -5,7 +5,8 @@
 <div class="bg-danger p-a-1 m-b-1" *ngIf="isInvalidAuthen">
     Invalid username or password. Please try again.
 </div>
-<form novalidate #form="ngForm" (ngSubmit)="submitForm(form)">
+<form novalidate #form="ngForm" (ngSubmit)="submitForm(form)" class="p-a-3">
+    <h2 class="text-info">Please Login</h2>
     <div class="form-group">
         <label>Username</label>
         <input class="form-control" 
@@ -23,4 +24,6 @@
         <input class="form-control" type="password" name="password" [(ngModel)]="password" required/>
     </div>
     <button class="btn btn-primary" type="submit">Log In</button>
+    <button class="btn btn-info" type="button">Register</button>
+    <p class="m-t-1">For test username: <strong>alice</strong>/password: <strong>Secret</strong></p>
 </form>

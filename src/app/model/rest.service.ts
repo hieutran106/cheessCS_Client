@@ -17,20 +17,17 @@ export class RestService {
     authenticate(user:string, pass:string): Observable<boolean> {
         let request:Request = new Request({
             method: RequestMethod.Post,
-            url: this.baseUrl+"login",
+            url: this.baseUrl+"api/engine/login",
             body: {username: user, password:pass}
         });
-        console.log(request);
+
         return this.http.request(request).map( res => {
             console.log("aa");
             let r = res.json();
             console.log(r);
             if (r.success) {
                 this.user.token=r.token;
-                this.user.displayName=r.displayName;
-                this.user.winMatch=r.winMatch;
-                this.user.totalMatch=r.totalMatch;
-
+                this.user.email=r.email;
             }
             return r.success;
         });
@@ -38,12 +35,12 @@ export class RestService {
     getNextMove(fen:string): Observable<any> {
         let request = new Request({
             method: RequestMethod.Post,
-            url: this.baseUrl+"api/engine",
-            body: {fen:fen}
+            url: this.baseUrl+"api/engine/getbestmove",
+            body: {
+                fen:fen,
+                token:this.user.token
+            }
         });
-        if (this.user.token!=null) {
-            request.headers.set("Authorization",`Bearer<${this.user.token}>`)
-        }
         return this.http.request(request).map(
             response => {
                 return response.json();

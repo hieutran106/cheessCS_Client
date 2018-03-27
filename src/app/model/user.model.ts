@@ -5,8 +5,5 @@ export class User {
     username:string;
     token: string;
     //user info
-    displayName:string;
-    winMatch:number;
-    totalMatch: number;
-
+    email:string;
 }

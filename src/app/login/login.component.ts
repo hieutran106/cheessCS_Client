@@ -20,10 +20,8 @@ export class LoginComponent {
         this.restService.authenticate(username,password).subscribe(
             isLogin => {
                 if (isLogin) {
-                    //redirect
-                    
+                    //redirect                
                     this.router.navigateByUrl("/dashboard");
-
                 } else {
                     //Inform
                     this.isInvalidAuthen=true;

@@ -1,13 +1,98 @@
-<div class="col-xs-4 p-a-1 bg-success">
-    User info
-</div>
-<div class="col-xs-8 p-a-1 bg-info">
-    <button class="btn btn-primary">
-        Single play
-    </button>
-    
-    <button class="btn btn-primary">
-        Multi play
-    </button>
-</div>
+<style>
+    html {
+  min-height: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(#9d9181), to(#9e866c));
+  background: linear-gradient(#9d9181, #9e866c);
+}
 
+body {
+  background-color: transparent;
+}
+
+.card-profile {
+  width: 340px;
+  margin: 50px auto;
+  background-color: #e6e5e1;
+  border-radius: 0;
+  border: 0;
+  -webkit-box-shadow: 1em 1em 2em rgba(0, 0, 0, 0.2);
+          box-shadow: 1em 1em 2em rgba(0, 0, 0, 0.2);
+}
+.card-profile .card-img-top {
+  border-radius: 0;
+}
+.card-profile .card-img-profile {
+  max-width: 100%;
+  border-radius: 50%;
+  margin-top: -95px;
+  margin-bottom: 35px;
+  border: 5px solid #e6e5e1;
+}
+.card-profile .card-title {
+  margin-bottom: 50px;
+}
+.card-profile .card-title small {
+  display: block;
+  font-size: .6em;
+  margin-top: .2em;
+}
+.card-profile .card-links {
+  margin-bottom: 25px;
+}
+.card-profile .card-links .fa {
+  margin: 0 1em;
+  font-size: 1.6em;
+}
+.card-profile .card-links .fa:focus, .card-profile .card-links .fa:hover {
+  text-decoration: none;
+}
+.card-profile .card-links .fa.fa-dribbble {
+  color: #ea4b89;
+  font-weight: bold;
+}
+.card-profile .card-links .fa.fa-dribbble:hover {
+  color: #e51d6b;
+}
+.card-profile .card-links .fa.fa-twitter {
+  color: #68aade;
+}
+.card-profile .card-links .fa.fa-twitter:hover {
+  color: #3e92d5;
+}
+.card-profile .card-links .fa.fa-facebook {
+  color: #3b5999;
+}
+.card-profile .card-links .fa.fa-facebook:hover {
+  color: #2d4474;
+}
+
+</style>
+
+<div class="col-xs-4">
+        <div class='card card-profile text-center'>
+                <img alt='' class='card-img-top' src='https://unsplash.it/340/160?image=354'>
+                <div class='card-block'>
+                  <img alt='' class='card-img-profile' src='assets/chibi_gandalf.png'>
+                  <h4 class='card-title'>
+                    Gandalf Pressi
+                    <small>Amateur Chess Player</small>
+                  </h4>
+                  
+                  <div class='card-links p-a-1'>
+                    <a class='fa fa-dribbble' href='#'></a>
+                    <a class='fa fa-twitter' href='#'></a>
+                    <a class='fa fa-facebook' href='#'></a>
+                  </div>
+                </div>
+              </div>
+</div>
+<div class="col-xs-8">
+    <h2 class="text-info p-t-2 p-b-2">Click the buttons below to start playing</h2>
+    <button class="btn btn-outline-primary">Versus computer</button>
+    <br/>
+    <br/>
+    <button class="btn btn-outline-primary">Multiplay</button>
+    <br/>
+    <br/>
+    <p class="t-a-2 text-danger text-sm-left">Multiplay is in development!</p>
+</div>
