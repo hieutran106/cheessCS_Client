@@ -1,3 +1,4 @@
+import { AuthenGuard } from './authen.guard';
 import { ModalContentComponent } from './core/modalContent.component';
 import { SquareAttrDirective } from './core/squareAttr.directive';
 import { ChessBoardComponent } from './core/chessBoard.component';
@@ -25,7 +26,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     BrowserModule, routing, FormsModule, HttpModule,ModalModule.forRoot(),ButtonsModule.forRoot()
   ],
   entryComponents:[ModalContentComponent],
-  providers: [RestService, User],
+  providers: [RestService, User,AuthenGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

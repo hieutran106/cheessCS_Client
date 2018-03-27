@@ -1,3 +1,4 @@
+import { AuthenGuard } from './authen.guard';
 import { ChessBoardComponent } from './core/chessBoard.component';
 import { DashBoardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
@@ -9,11 +10,14 @@ const routes: Routes = [
     },
     {
         path: "dashboard",
-        component: DashBoardComponent
+        component: DashBoardComponent,
+        canActivate:[AuthenGuard]
+        
     },
     {
         path: "chessboard",
-        component: ChessBoardComponent
+        component: ChessBoardComponent,
+        canActivate:[AuthenGuard]
     },
     { 
         path: "", 

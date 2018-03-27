@@ -1,7 +1,12 @@
 <div class="navbar navbar-inverse bg-inverse">
     <a class="navbar-brand">ChessCS</a>
-    <div class="navbar-nav" *ngIf="user.token">
-        <label>Welcome, {{user.displayName}}</label>
-        <button class="btn btn-sm btn-danger" (click)="logout()">Logout</button>
-    </div> 
+
+    <div *ngIf="user.token">
+            <label>Welcome, {{user.username}}</label>
+
+            <button class="btn btn-sm btn-danger" (click)="logout()">Logout</button>
+    </div>
+           
+           
+    
 </div>

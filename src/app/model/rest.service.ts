@@ -28,6 +28,7 @@ export class RestService {
             if (r.success) {
                 this.user.token=r.token;
                 this.user.email=r.email;
+                this.user.username=r.username;
             }
             return r.success;
         });
