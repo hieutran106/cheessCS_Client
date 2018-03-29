@@ -209,7 +209,7 @@ export class ChessBoardComponent {
             keyboard:false,
             initialState: {
                 title:(status==1)?"You won. Congratulation." :
-                "You lose. Waana try another game?"
+                "You lose. Wanna try another game?"
             }
         };
         this.modalRef=this.modalService.show(ModalContentComponent,modalOptions);

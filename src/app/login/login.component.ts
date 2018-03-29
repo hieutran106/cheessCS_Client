@@ -2,6 +2,7 @@ import { RestService } from './../model/rest.service';
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
 import { NgForm } from '@angular/forms';
+import { environment } from '../../environments/environment';
 
 @Component({
     selector: "login",
@@ -12,9 +13,10 @@ export class LoginComponent {
     password:string;
     formSubmitted:boolean =false;
     isInvalidAuthen = false;
+    registerUrl:string;
     constructor(private restService: RestService,
     private router: Router) {
-
+        this.registerUrl=environment.REGISTER_URL;
     }
     private authenticate(username:string, password:string) {
         this.restService.authenticate(username,password).subscribe(

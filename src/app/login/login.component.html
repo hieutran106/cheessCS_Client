@@ -24,6 +24,7 @@
         <input class="form-control" type="password" name="password" [(ngModel)]="password" required/>
     </div>
     <button class="btn btn-primary" type="submit">Log In</button>
-    <button class="btn btn-info" type="button">Register</button>
+    <!-- <button class="btn btn-info" type="button">Register</button> -->
+    <a class="btn btn-info" role="button" [attr.href]="registerUrl">Register</a>
     <p class="m-t-1">For test username: <strong>alice</strong>/password: <strong>Secret</strong></p>
 </form>
