@@ -1,3 +1,21 @@
+# ChessCS
+A chess engine written in C#(backend) and angular 4 (frontend). The engine is built using optimized minimax algorithm that can search 4 to 8 moves ahead. The engine can easily beat a decent chess player. 
+##### A demo worths a thousand words (http://113.160.166.87:8096)
+##### Technology stack
+- Frontend: Angular 4, Typescript
+- Backend: ASP.NET MVC 5, ASP Identity for authentication
+- Algorithm: alpha-beta pruning & optimization
+##### Skill and knowledge achievements:
+- Data structure and algorithms (alpha-beta pruning, hash table, etc)
+- Optimization (move orderings, killer moves)
+- C# Windows Application
+- Source control (GIT)
+
+###### Screenshots
+![Screenshot 1](https://github.com/hieutran106/cheessCS_Client/raw/master/screenshot.gif)
+
+
+
 # ChessApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.2.
